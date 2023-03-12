@@ -31,7 +31,7 @@ export enum HTTPMethod {
 }
 
 export type ApiResponse<T> = {
-  data: T | unknown;
+  data: T | any;
   success: boolean;
 };
 
