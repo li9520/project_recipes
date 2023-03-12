@@ -1,0 +1,66 @@
+.dropDown {
+  width: 100%;
+  position: relative;
+}
+
+.dropdown_header {
+  display: block;
+  
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #000000;
+  background: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E")  no-repeat calc(100% - 15px) center,
+    linear-gradient(98.81deg, #FFF0F0 -0.82%, #FFDFDF 101.53%);
+ 
+  border-radius: 7px;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+ 
+}
+
+.dropdown_item {
+
+  display: block;
+  padding: 4px 0 4px 10px;
+  width: 100%;
+}
+
+.dropdown_body {
+  position: absolute;
+  top: 35px;
+  padding: 0;
+  width: inherit;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.8em;
+  color: #000000;
+  background: #FFF7F7;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.dropdown_body li {
+  list-style: none;
+}
+
+.dropdown_body input[type=checkbox]{
+  display: none;
+}
+
+.dropdown_body input[type=checkbox]:checked ~label {
+  
+    background: #FFE5E5;
+  
+}
+
+
+.dropdown_disabled {
+  background: linear-gradient(98.81deg, #F2F2F2 -0.82%, #D9D9D9 101.53%);
+}

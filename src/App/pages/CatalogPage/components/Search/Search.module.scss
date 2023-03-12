@@ -1,0 +1,38 @@
+.search {
+  position: relative;
+  margin: 30px auto 30px;
+  width: 50%;
+
+  button[type="reset"] {
+    position: absolute;
+    font-size: 30px;
+    top: 4px;
+    right: 10px;
+    color: #666;
+    border: 0;
+    display: none;
+    padding: 0 10px;
+    background-color: transparent;
+    opacity: 0.2;
+    transition: opacity ease 0.5s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  input:valid ~ button[type="reset"] {
+    display: block;
+  }
+}
+@media screen and (max-width: 870px) {
+  .search{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .search {
+    width: 100%;
+  }
+}

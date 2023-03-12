@@ -1,0 +1,112 @@
+$pageWidth: 752px;
+%container {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.recipe {
+  @extend %container;
+  position: relative;
+  
+  &_img {
+    display: block;
+    width:  100%;
+    height: auto;
+
+  }
+  &_body {
+    background-color: white;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    position: relative;
+   
+    top: -40px;
+    overflow: hidden;
+
+    .wrapper {
+      margin: 0 auto;
+      width: 100%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    &_title {
+      color: #09051C;
+      margin-top: 68px;
+      margin-bottom: 33px;
+    }
+    &_info {
+      display: flex;
+      justify-content:flex-start;
+      gap: 30px;
+      margin-bottom: 25px;
+
+      &_item {
+      display: flex;
+      align-items: center;
+      justify-content:flex-start;
+      gap: 16px;
+
+      color: #3B3B3B;
+
+        & img {
+          display: block;
+          width: 40px;
+          height: auto;
+        }
+      }
+    }
+
+    &_ingredients {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      margin: 0 -10px -20px;
+    }
+
+    &_instraction {
+      text-align: justify;
+      font-size: 16px;
+      line-height: 1.8em;
+    }
+  }
+}
+
+.card_ingredient {
+  text-align: center;
+  overflow: hidden;
+  width: 20%;
+  padding: 0 10px 20px;
+  box-sizing: border-box;
+  
+
+  & img {
+    height: 70px;
+    width: auto;
+  }
+  
+  & p {
+    margin: 5px;
+  }
+}
+
+
+@media screen and (max-width: 730px) {
+  .card_ingredient {
+    width: 25%;
+  }
+}
+
+@media screen and  (max-width: 660px) {
+  .card_ingredient {
+    width: 30%;
+  }
+}
+
+@media screen and  (max-width: 550px) {
+  .card_ingredient {
+    width: 50%;
+  }
+}
+

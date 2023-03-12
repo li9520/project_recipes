@@ -1,0 +1,37 @@
+@import "../../styles/variables.scss";
+
+.button {
+  background-color: $main;
+  border-radius: 7px;
+  border: none;
+  cursor:pointer;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 500;
+  color: $white-color;
+  
+  padding: 8px 14px;
+
+  box-shadow: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 9px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &_disabled {
+    background-color: $disable-main;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.button_home {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
