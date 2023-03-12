@@ -10,8 +10,8 @@
     "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.json",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
