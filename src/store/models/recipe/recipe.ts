@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { IngredientApi, IngredientModel, normalizeIngredient } from './ingredient';
 
 export type RecipeApi = {
+  id: number;
   title: ReactNode;
   image: string;
   instructions: string;
@@ -12,6 +13,7 @@ export type RecipeApi = {
 };
 
 export type RecipeModel = {
+  id: number;
   title: ReactNode;
   image: string;
   instructions: string;
@@ -21,6 +23,7 @@ export type RecipeModel = {
 };
 
 export const normalizeRecipe = (from: RecipeApi): RecipeModel => ({
+  id: from.id,
   title: from.title,
   image: from.image,
   instructions: from.instructions,

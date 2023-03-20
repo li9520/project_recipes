@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import rootStore from '../instance';
+
 export const useQueryParamsStoreInit = (): void => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,7 +28,7 @@ export const useQueryParamsStoreInit = (): void => {
     if (location.search) {
       rootStore.query.setSearch(location.search);
     } else {
-      rootStore.query.setSearch(queryString.stringify({ page: '1', query: '', type: [] }));
+      rootStore.query.setSearch(queryString.stringify({ page: '1', query: '', type: '', diet: '' }));
     }
   }, [location.pathname, location.search]);
 };

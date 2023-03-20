@@ -10,7 +10,13 @@ export type RecipesModel = {
   totalResults: number;
 };
 
-export const normalizeRecipes = (from: RecipesApi): RecipesModel => ({
-  results: from.results.map((item) => normalizeRecipeItemModel(item)),
-  totalResults: from.totalResults,
-});
+export const normalizeRecipes = (from: RecipesApi): RecipesModel => {
+  const filteredData = from.results.map((item: RecipeItemApi) => {
+    const image = !item.image ? 'src/img/banner4.jpg' : item.image;
+    return { ...item, image: image };
+  });
+  return {
+    results: filteredData.map((item) => normalizeRecipeItemModel(item)),
+    totalResults: from.totalResults,
+  };
+};

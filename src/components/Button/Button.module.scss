@@ -1,8 +1,8 @@
-@import "../../styles/variables.scss";
+@import "styles/variables.scss";
 
 .button {
   background-color: $main;
-  border-radius: 7px;
+  border-radius: $border-radius-main;
   border: none;
   cursor:pointer;
   font-size: 18px;
@@ -11,8 +11,6 @@
   color: $white-color;
   
   padding: 8px 14px;
-
-  box-shadow: none;
 
   display: flex;
   align-items: center;
@@ -30,8 +28,27 @@
   }
 }
 
-.button_home {
+.goBack {
   position: absolute;
   top: 20px;
   left: 20px;
+
+  span {
+    position: relative;
+    width: 45px;
+    height: 45px;
+  } 
+
+
+  &:after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-left: 5px solid white;
+    border-bottom: 5px solid white;
+    transform: rotate(45deg);
+  }
 }
+

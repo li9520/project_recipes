@@ -1,44 +1,58 @@
-import { useEffect } from 'react';
-import React from 'react';
+import React, { useRef } from 'react';
 
-import { Button } from 'components/Button';
-import { RecipeItemModel } from 'store/models/Food';
+import Button from 'components/Button';
+import { observer } from 'mobx-react-lite';
+import { useFoodStore } from 'pages/CatalogPage/CatalogPage';
+import RecipesList from 'pages/CatalogPage/components/RecipesList';
 
 import styles from './Paginate.module.scss';
-import RecipesList from '../RecipesList';
 
-export type PaginateProps = {
-  recipes: RecipeItemModel[];
-  currentPage: number;
-  nextPage(): void;
-  prevPage(): void;
-  totalResults: number;
-};
+const Paginate: React.FC = () => {
+  const foodContext = useFoodStore();
+  const { search, list, nextPage, prevPage, totalResults } = foodContext;
+  const wrapperRef = useRef<null | HTMLDivElement>(null /* начальное значение */);
 
-const Paginate: React.FC<PaginateProps> = ({ recipes, currentPage, nextPage, prevPage, totalResults }) => {
-  useEffect(() => {
-    window.scrollTo({ top: 0 });
-  }, []);
-
-  if (!recipes.length) return null;
-
-  const recipesPerPage = recipes.length;
+  const recipesPerPage = list.length;
   const numberPages = Math.ceil(totalResults / recipesPerPage);
 
+  const handleNext = () => {
+    if (wrapperRef.current === null) {
+      return;
+    }
+    nextPage();
+    wrapperRef.current.scrollIntoView({ block: 'center' });
+  };
+
+  const handlePrev = () => {
+    if (wrapperRef.current === null) {
+      return;
+    }
+    prevPage();
+    wrapperRef.current.scrollIntoView({ block: 'center' });
+  };
+
   return (
-    <div className={styles.catalog}>
-      <RecipesList recipes={recipes} />
-      <div className={styles.catalog_paginate}>
-        <Button disabled={currentPage === 1} onClick={prevPage}>
-          Prev page
-        </Button>
-        <div className={styles.catalog_paginate_numbering}>{`${currentPage} / ${numberPages}`}</div>
-        <Button disabled={currentPage === numberPages} onClick={nextPage}>
-          Next page
-        </Button>
-      </div>
-    </div>
+    <>
+      <p ref={wrapperRef}>
+        Showing {totalResults} recipes
+        {search.query && <span> for {search.query}</span>}
+      </p>
+      {list.length !== 0 && (
+        <div className={styles.catalog}>
+          <RecipesList recipes={[...list]} />
+          <div className={styles.catalog_paginate}>
+            <Button disabled={search.page === 1} onClick={handlePrev}>
+              Prev page
+            </Button>
+            <div className={styles.catalog_paginate_numbering}>{`${search.page} / ${numberPages}`}</div>
+            <Button disabled={search.page === numberPages} onClick={handleNext}>
+              Next page
+            </Button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
-export default Paginate;
+export default observer(Paginate);

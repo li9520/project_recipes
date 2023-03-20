@@ -17,7 +17,11 @@ const RecipePage = () => {
     pageStore.getOrganizationRecipe(id);
   }, [id, pageStore]);
 
-  return pageStore.meta === Meta.success ? <RenderPage recipe={pageStore.data} /> : <RenderPage loading />;
+  return (
+    <div>
+      <RenderPage recipe={pageStore.data} loading={pageStore.meta !== Meta.success} />
+    </div>
+  );
 };
 
 export default observer(RecipePage);

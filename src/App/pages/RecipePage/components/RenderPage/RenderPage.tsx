@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { Button } from 'components/Button';
+import Button from 'components/Button';
 import { useNavigate } from 'react-router-dom';
 import { URLmap } from 'store/ApiStore';
+import favouriteStore from 'store/FavouriteStore/instance';
 import { IngredientModel, RecipeModel } from 'store/models/recipe';
 
 import serving_img from './img/servings.png';
@@ -21,11 +22,14 @@ const CardIngredient: React.FC<IngredientModel> = ({ image, amount, unit, name }
 };
 
 type RenderPageProps = {
-  recipe: RecipeModel;
+  recipe: RecipeModel | null;
 };
 const RenderPage: React.FC<RenderPageProps> = ({ recipe }) => {
-  const navigate = useNavigate();
-  const { image, title, readyInMinutes, instructions, extendedIngredients, servings } = recipe;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  if (recipe === null) return null;
+  const { image, title, readyInMinutes, instructions, extendedIngredients, servings, id } = recipe;
   const recipeImage = <img className={styles.recipe_img} alt="" src={image} />;
   const recipeTitle = <h1 className={styles.recipe_body_title}>{title}</h1>;
   const recipeInfo = (
@@ -51,6 +55,11 @@ const RenderPage: React.FC<RenderPageProps> = ({ recipe }) => {
       </div>
     </>
   );
+  const navigate = useNavigate();
+  const handleAddClick: React.MouseEventHandler<HTMLElement> = (e) => {
+    e.stopPropagation();
+    favouriteStore.addRecipe({ id, image, title, onClick: () => navigate(`/receipt/${id}`) });
+  };
 
   const recipe_instraction = (
     <>
@@ -68,10 +77,11 @@ const RenderPage: React.FC<RenderPageProps> = ({ recipe }) => {
           {recipeInfo}
           {recipe_ingredients}
           {recipe_instraction}
+          <Button onClick={handleAddClick}>add to favourite</Button>
         </div>
       </div>
-      <Button onClick={() => navigate(-1)} className={'button_home'}>
-        Home
+      <Button onClick={() => navigate(-1)} className={'goBack'}>
+        <span />
       </Button>
     </div>
   );

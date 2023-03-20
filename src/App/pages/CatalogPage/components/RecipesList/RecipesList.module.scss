@@ -1,31 +1,9 @@
-%flex_row {
-  display: flex;
-  flex-direction: row;
-
-  justify-content: space-between;
-
-  flex-wrap: wrap;
-}
+@import "styles/mixins.scss";
 
 .recipes {
-  @extend %flex_row;
-  margin: 0 -15px -30px;
-    &_item {
-      padding: 0 17px 32px;
-      box-sizing: border-box;
-      width: 33.33333%;
-    }
-}
+  @include recipes;
 
-
-@media screen and (max-width: 870px) {
-  .recipes_item {
-    width: 50%;
-  }
-}
-
-@media screen and  (max-width: 660px) {
-  .recipes_item {
-    width: 100%;
+  &_item {
+    @include recipes-item;
   }
 }

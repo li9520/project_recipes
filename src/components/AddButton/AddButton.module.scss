@@ -1,0 +1,39 @@
+@import "styles/variables.scss";
+
+$addbuttonsize: 45px;
+
+@mixin verticalcentre {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.addButton { 
+  background-color: $main;
+  height: $addbuttonsize;
+  display: block;
+  border-radius: 50%;
+  width: $addbuttonsize;
+  z-index: 10;
+
+  &_plus {
+    width:$addbuttonsize*0.6;
+    margin:auto;
+    margin-top:0px;
+    height:$addbuttonsize*0.6;
+    background: linear-gradient(to bottom, transparent 40%, 
+    white 40%, 
+    white 60%,  
+    transparent 60%),
+
+    linear-gradient(to right, transparent 40%, 
+    white 40%, 
+    white 60%,  
+    transparent 60%),;
+    @include verticalcentre
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}

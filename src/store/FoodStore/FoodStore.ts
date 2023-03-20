@@ -15,7 +15,7 @@ import { ILocalStore } from 'utils/useLocalStote';
 import { IFoodStore, Meta } from './types';
 
 type PrivateFields = '_list' | '_meta' | '_search' | '_totalResults';
-const numberRecipes = 15;
+const numberRecipes = 21;
 
 export default class FoodStore implements IFoodStore, ILocalStore {
   constructor() {
@@ -27,7 +27,7 @@ export default class FoodStore implements IFoodStore, ILocalStore {
       meta: computed,
       totalResults: computed,
       getOrganizationRecipeList: action,
-
+      destroy: action,
       _search: observable,
       search: computed,
       nextPage: action.bound,
@@ -93,28 +93,43 @@ export default class FoodStore implements IFoodStore, ILocalStore {
     rootStore.query.changeParams('page', String(this._search.page));
   }
 
-  setType(search: { type: string[] }): void {
+  setType(value: string[]): void {
     this._search.page = 1;
-    this._search.type = search.type;
+    this._search.type = value;
     this._cachedList = {};
-    rootStore.query.changeParams('page', String(this._search.page));
-    rootStore.query.changeParams('type', this._search.type.join('|'));
+    rootStore.query.setSearch(
+      queryString.stringify({
+        ...this.search,
+        type: this.search.type.join('|'),
+        diet: this.search.diet.join('|'),
+      })
+    );
   }
 
-  setDiet(search: { diet: string[] }): void {
+  setDiet(value: string[]): void {
     this._search.page = 1;
-    this._search.diet = search.diet;
+    this._search.diet = value;
     this._cachedList = {};
-    rootStore.query.changeParams('page', String(this._search.page));
-    rootStore.query.changeParams('diet', this._search.diet.join('|'));
+    rootStore.query.setSearch(
+      queryString.stringify({
+        ...this.search,
+        type: this.search.type.join('|'),
+        diet: this.search.diet.join('|'),
+      })
+    );
   }
 
-  setQuery(search: { query: string }): void {
+  setQuery(value: string): void {
     this._search.page = 1;
-    this._search.query = search.query;
+    this._search.query = value;
     this._cachedList = {};
-    rootStore.query.changeParams('page', String(this._search.page));
-    rootStore.query.changeParams('query', this._search.query);
+    rootStore.query.setSearch(
+      queryString.stringify({
+        ...this.search,
+        type: this.search.type.join('|'),
+        diet: this.search.diet.join('|'),
+      })
+    );
   }
 
   removeFilter(value: string): void {
@@ -147,7 +162,7 @@ export default class FoodStore implements IFoodStore, ILocalStore {
       method: HTTPMethod.GET,
       endpoint: getUrl({
         query: this._search.query,
-        offset: this._search.page,
+        offset: (this._search.page - 1) * numberRecipes,
         type: this._search.type.join('|'),
         diet: this._search.diet.join('|'),
         number: numberRecipes,
@@ -160,7 +175,9 @@ export default class FoodStore implements IFoodStore, ILocalStore {
       }
       try {
         const list: RecipeItemModel[] = [];
+
         const normalizesData = normalizeRecipes(response.data);
+
         list.push(...normalizesData.results);
         this._totalResults = normalizesData.totalResults;
         this._meta = Meta.success;
@@ -189,9 +206,9 @@ export default class FoodStore implements IFoodStore, ILocalStore {
       if (
         search !==
         queryString.stringify({
-          ...this._search,
-          type: this._search.type.join('|'),
-          diet: this._search.diet.join('|'),
+          ...this.search,
+          type: this.search.type.join('|'),
+          diet: this.search.diet.join('|'),
         })
       ) {
         this._search.diet = rootStore.query.getParam('diet')

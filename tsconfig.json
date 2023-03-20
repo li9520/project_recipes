@@ -24,6 +24,7 @@
 			"utils/*": ["src/utils/*"],
 			"store/*": ["src/store/*"],
 			"pages/*": ["src/App/pages/*"],
+			"src/*": ["src/*"],
 			"appComponents/*": ["src/App/components/*"]
 		}
   },

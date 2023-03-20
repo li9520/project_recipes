@@ -1,8 +1,8 @@
-@import "../../styles/variables.scss";
+@import "styles/variables.scss";
 
 .loader {
   display: block;
-  margin: 0 auto;
+  //margin: 50px auto;
   border-style: solid;
   border-color: $main;
   border-top-color: transparent;

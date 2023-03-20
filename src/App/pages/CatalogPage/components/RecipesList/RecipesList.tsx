@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Card from 'components/Card';
+import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { RecipeItemModel } from 'store/models/Food';
 
@@ -22,6 +23,7 @@ const RecipesLits: React.FC<RecipesListProps> = ({ recipes }) => {
               content={`${card.nutrition.kcal} kcal`}
               subtitle={card.nutrition.ingredients.splice(0, 4).join(' + ')}
               onClick={() => navigate(`/receipt/${card.id}`)}
+              addButton={true}
             />
           </div>
         );
@@ -30,4 +32,4 @@ const RecipesLits: React.FC<RecipesListProps> = ({ recipes }) => {
   );
 };
 
-export default RecipesLits;
+export default observer(RecipesLits);

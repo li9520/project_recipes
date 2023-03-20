@@ -1,8 +1,11 @@
+@import "styles/variables.scss";
+
 $pageWidth: 752px;
 %container {
   max-width: $pageWidth;
   width: 100%;
-  margin: 0 auto;
+  margin: $heightNav auto 0;
+  min-height: 80vh;
   box-sizing: border-box;
 }
 
@@ -30,6 +33,10 @@ $pageWidth: 752px;
       width: 100%;
       padding: 0 15px;
       box-sizing: border-box;
+    }
+
+    h2 {
+      margin-top: 55px;
     }
     &_title {
       color: #09051C;
@@ -69,6 +76,7 @@ $pageWidth: 752px;
       text-align: justify;
       font-size: 16px;
       line-height: 1.8em;
+      margin-bottom: 40px;
     }
   }
 }
@@ -90,6 +98,8 @@ $pageWidth: 752px;
     margin: 5px;
   }
 }
+
+
 
 
 @media screen and (max-width: 730px) {

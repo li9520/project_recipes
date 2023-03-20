@@ -2,9 +2,10 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 const domen = 'https://api.spoonacular.com';
-//export const API_KEY = "4ea0ec47d5fb42fea8b7520ea4838d26";
-//export const API_KEY = "931e6ac38f474670b955e4fd766b8b9c";
-export const API_KEY = '2593c1f9f006463c98678507137c57e2';
+
+//const API_KEY = '4ea0ec47d5fb42fea8b7520ea4838d26';
+//const API_KEY = '931e6ac38f474670b955e4fd766b8b9c';
+const API_KEY = '2593c1f9f006463c98678507137c57e2';
 
 export const URLmap = {
   list: (params: {

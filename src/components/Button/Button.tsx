@@ -14,7 +14,7 @@ export type ButtonProps = React.PropsWithChildren<{
 }> &
   React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<ButtonProps> = ({ onClick, loading, children, className, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, loading, children, className, ...props }) => {
   let { disabled } = props;
   if (loading) {
     disabled = true;
@@ -37,3 +37,5 @@ export const Button: React.FC<ButtonProps> = ({ onClick, loading, children, clas
     </button>
   );
 };
+
+export default React.memo(Button);

@@ -1,11 +1,6 @@
-%container {
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 30px;
-  box-sizing: border-box;
-}
+@import "styles/mixins.scss";
 
 .catalogPage {
-  @extend %container;
+  @include container-1100px;
+  min-height: 80vh;
 }

@@ -8,11 +8,12 @@ export interface IFoodStore {
 
   search: { query: string; type: string[]; page: number; diet: string[] };
   totalResults: number;
+  destroy(): void;
   nextPage(): void;
   prevPage(): void;
-  setType(search: { type: string[] }): void;
-  setDiet(search: { diet: string[] }): void;
-  setQuery(search: { query?: string }): void;
+  setType(/*search: { type: string[] }*/ value: string[]): void;
+  setDiet(/*search: { diet: string[] }*/ value: string[]): void;
+  setQuery(value: string): void;
   removeFilter(value: string): void;
 }
 

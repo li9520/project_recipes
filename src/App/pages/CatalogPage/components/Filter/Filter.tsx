@@ -1,18 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import MultiDropdown, { Option } from 'components/MultiDropdown';
+import { observer } from 'mobx-react-lite';
+import { useFoodStore } from 'pages/CatalogPage';
 
 import styles from './Filter.module.scss';
 
-const Filter = ({
-  filter,
-  setType,
-  setDiet,
-}: {
-  filter: { type: string[]; diet: string[] };
-  setType: (options: string[]) => void;
-  setDiet: (options: string[]) => void;
-}) => {
+const Filter = () => {
   const types: Option[] = [
     { key: 'main course', value: 'main course' },
     { key: 'side dish', value: 'side dish' },
@@ -43,16 +37,43 @@ const Filter = ({
     { key: 'Whole30', value: 'Whole30' },
   ];
 
+  const foodContext = useFoodStore();
+  const { search, setType, setDiet } = foodContext;
+
+  const handleChangeType = useCallback(
+    (types: string[]) => {
+      setType(types);
+    },
+    [setType]
+  );
+
+  const handleChangeDiet = useCallback(
+    (diest: string[]) => {
+      setDiet(diest);
+    },
+    [setDiet]
+  );
+
   return (
     <div className={styles.filter}>
       <div className={styles.filter_item}>
-        <MultiDropdown options={types} value={filter.type} onChange={setType} pluralizeOptions={() => 'All courses'} />
+        <MultiDropdown
+          options={types}
+          value={search.type}
+          onChange={handleChangeType}
+          pluralizeOptions={() => 'All courses'}
+        />
       </div>
       <div className={styles.filter_item}>
-        <MultiDropdown options={diest} value={filter.diet} onChange={setDiet} pluralizeOptions={() => 'All diets'} />
+        <MultiDropdown
+          options={diest}
+          value={search.diet}
+          onChange={handleChangeDiet}
+          pluralizeOptions={() => 'All diets'}
+        />
       </div>
     </div>
   );
 };
 
-export default Filter;
+export default observer(Filter);

@@ -8,7 +8,6 @@
 .catalog {
   width: 100%;
   margin: 0 auto;
-  overflow: hidden;
 
   &_paginate {
     @extend %flex_row;

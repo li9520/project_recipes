@@ -1,3 +1,5 @@
+@import "styles/variables.scss";
+
 .dropDown {
   width: 100%;
   position: relative;
@@ -17,7 +19,7 @@
  
   border-radius: 7px;
   border: none;
-  box-shadow: none;
+  box-shadow: $box-shadow;
   box-sizing: border-box;
  
 }
@@ -39,9 +41,9 @@
   line-height: 1.8em;
   color: #000000;
   background: #FFF7F7;
-  border-top-right-radius: 7px;
-  border-top-left-radius: 7px;
+  border-radius: 7px;
   box-sizing: border-box;
+  box-shadow: $box-shadow;
   overflow: hidden;
   z-index: 10;
 }

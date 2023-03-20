@@ -99,6 +99,7 @@ module.exports = {
       utils: path.join(srcPath, 'utils'),
       store: path.join(srcPath, 'store'),
       pages: path.join(srcPath, 'App/pages'),
+      src: srcPath,
       appComponents: path.join(srcPath, 'App/components'),
     },
   },
