@@ -1,0 +1,54 @@
+@import "styles/variables.scss";
+
+.button {
+  background-color: $main;
+  border-radius: $border-radius-main;
+  border: none;
+  cursor:pointer;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 500;
+  color: $white-color;
+  
+  padding: 8px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 9px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &_disabled {
+    background-color: $disable-main;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.goBack {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  span {
+    position: relative;
+    width: 35px;
+    height: 35px;
+  } 
+
+
+  &:after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-left: 5px solid white;
+    border-bottom: 5px solid white;
+    transform: rotate(45deg);
+  }
+}
+

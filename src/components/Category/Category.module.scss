@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+
+.category {
+  position: relative;
+  padding: 10px 40px 10px 10px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: #000000;
+  border-radius: 7px;
+  border: none;
+  box-shadow: $box-shadow;
+  box-sizing: border-box;
+  background: linear-gradient(98.81deg, #FFF0F0 -0.82%, #FFDFDF 101.53%);
+
+
+  button[type="reset"] {
+    display: block;
+    position: absolute;
+    font-size: 30px;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    color: #666;
+    border: 0;
+    padding: 0 10px;
+    background-color: transparent;
+    opacity: 0.2;
+    transition: opacity ease 0.5s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+}

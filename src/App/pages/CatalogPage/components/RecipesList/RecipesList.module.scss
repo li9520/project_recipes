@@ -1,0 +1,9 @@
+@import "styles/mixins.scss";
+
+.recipes {
+  @include recipes;
+
+  &_item {
+    @include recipes-item;
+  }
+}

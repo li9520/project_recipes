@@ -1,0 +1,56 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.wrapper {
+  background-image: url('src/img/banner4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include flex-center;
+  text-align: center;
+  width: 100%;
+  min-height: 420px;
+  @media screen and  (max-width: 560px) {
+    min-height: 320px;
+  }
+  margin-bottom: 20px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.search {
+  position: relative;
+  width: 50%;
+
+  button[type="reset"] {
+    position: absolute;
+    font-size: 30px;
+    top: 0;
+    bottom: 0;
+    right: 10px;
+    color: #666;
+    border: 0;
+    display: none;
+    padding: 0 5px;
+    background-color: transparent;
+    opacity: 0.2;
+    transition: opacity ease 0.5s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  input:not(:placeholder-shown) ~ button[type="reset"] {
+    display: block;
+  }
+}
+@media screen and (max-width: 870px) {
+  .search{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .search {
+    width: 100%;
+  }
+}

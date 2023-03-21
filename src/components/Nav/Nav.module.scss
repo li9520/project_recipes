@@ -1,0 +1,67 @@
+@import "styles/variables.scss";
+@import "styles/mixins.scss";
+
+.nav {
+  z-index: 100;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $heightNav;
+  
+  background:  rgba(255, 235, 235, 0.6);
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+
+  &_container {
+    @include container-1100px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    @media screen and  (max-width: 560px) {
+      justify-content: space-between;
+    }
+    align-items: center;
+ 
+    a {
+      color: #000;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      letter-spacing: 1px;
+
+      .counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        &_number {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          //font-size: 18px;
+          line-height: $heigthLike;
+        }
+        svg {
+          font-size: $heigthLike;
+          color: $main;
+        }
+      }
+      .text {
+        margin-left: 30px;
+        margin-right: 10px;
+      }
+
+      &:hover svg{
+        opacity: 0.5;
+      }
+    }
+
+    .active {
+      font-weight: bold;
+    }
+  }
+}

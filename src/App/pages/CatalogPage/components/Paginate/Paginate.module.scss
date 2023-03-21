@@ -1,0 +1,25 @@
+%flex_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.catalog {
+  width: 100%;
+  margin: 0 auto;
+
+  &_paginate {
+    @extend %flex_row;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    &_numbering {
+      font-size: 18px;
+    }
+  }
+}
+
+.textCenter {
+  text-align: center;
+}
